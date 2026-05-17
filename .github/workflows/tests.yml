@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ]
 
+  pull_request:
+    branches: [ main ]
+
 jobs:
 
   java-tests:
@@ -21,8 +24,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Compilar archivos
-      run: javac *.java
+    - name: Compilar archivos con JUnit
+      run: |
+        javac -cp junit-platform-console-standalone-1.10.2.jar *.java
 
     - name: Ejecutar pruebas
       run: |
