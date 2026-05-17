@@ -1,0 +1,31 @@
+name: CI Pruebas Unitarias
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  java-tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Clonar repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar Java
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Compilar archivos
+      run: javac *.java
+
+    - name: Ejecutar pruebas
+      run: |
+        java -jar junit-platform-console-standalone-1.10.2.jar \
+        --class-path . \
+        --scan-class-path
