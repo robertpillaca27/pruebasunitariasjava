@@ -25,11 +25,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Compilar archivos con JUnit
-      run: |
-        javac -cp junit-platform-console-standalone-1.10.0.jar *.java
+      run: javac -cp junit-platform-console-standalone-1.10.0.jar *.java
 
     - name: Ejecutar pruebas
-      run: |
-        java -jar junit-platform-console-standalone-1.10.0.jar\
-        --class-path . \
-        --scan-class-path
+      run: java -jar junit-platform-console-standalone-1.10.0.jar --class-path . --scan-class-path
